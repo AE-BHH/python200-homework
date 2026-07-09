@@ -41,6 +41,10 @@ print(f"changed name to uppercase: {df[['name', 'name_upper']]}")
 df_grouped = df.groupby("city")["grade"].mean()
 print(f"mean grade per city: {df_grouped}")
 
+# Pandas Q6
+df["city"] = df["city"].replace("Austin", "Houston")
+print(df[["name", "city"]])
+
 # Pandas Q7
 sorted_df = df.sort_values(by="grade", ascending=False)
 print(f"sorted dataframe: {sorted_df}")
@@ -60,8 +64,8 @@ print(f"array shape: {arr.shape}")
 print(f"sliced array: {arr[0:2, 0:2]}")
 
 # Numpy Q4
-print(f"array 3x4: {np.zeros((4, 3))}")
-print(f"array 2x5: {np.zeros((5, 2))}")
+print(f"array 3x4: {np.zeros((3, 4))}")
+print(f"array 2x5: {np.ones((2, 5))}")
 
 # Numpy Q5
 arr = np.arange(0, 50, 5)
@@ -118,20 +122,20 @@ y = [0, 1, 4, 9, 16, 25]
 subjects = ["Math", "Science", "English", "History"]
 scores = [88, 92, 75, 83]
 
-plt.subplot(1, 2, 1)
-plt.plot(x, y)
-plt.title("Squares")
-plt.xlabel("X-axis")
-plt.ylabel("Y-axis")
+fig, axes = plt.subplots(1, 2, figsize=(10, 4))
 
-plt.subplot(1, 2, 2)
-plt.bar(subjects, scores)
-plt.title("Student Scores")
-plt.xlabel("Subjects")
-plt.ylabel("Scores")
+axes[0].plot(x, y)
+axes[0].set_title("Squares")
+axes[0].set_xlabel("X-axis")
+axes[0].set_ylabel("Y-axis")
+
+axes[1].bar(subjects, scores)
+axes[1].set_title("Student Scores")
+axes[1].set_xlabel("Subjects")
+axes[1].set_ylabel("Scores")
+
 plt.tight_layout()
 plt.show()
-
 
 # Descriptive Stats Q1
 
@@ -147,7 +151,7 @@ print(f"Standard Deviation: {std}")
 
 
 # Descriptive Stats Q2
-normal_data = np.random.normal(loc=65, scale=10, size=1000)
+normal_data = np.random.normal(loc=65, scale=10, size=500)
 plt.hist(normal_data, bins=20, color="blue", edgecolor="black")
 plt.title("Distribution of Scores")
 plt.xlabel("Scores")
@@ -159,7 +163,7 @@ plt.show()
 group_a = [55, 60, 63, 70, 68, 62, 58, 65]
 group_b = [75, 80, 78, 90, 85, 79, 82, 88]
 
-plt.boxplot([group_a, group_b], ["Group A", "Group B"])
+plt.boxplot([group_a, group_b], labels=["Group A", "Group B"])
 plt.title("Score Comparison")
 plt.ylabel("Scores")
 plt.show()
@@ -171,6 +175,9 @@ plt.boxplot([normal_data, skewed_data], labels=["Normal", "Skewed"])
 plt.title("Distribution Comarison")
 plt.ylabel("Values")
 plt.show()
+
+# Exponential is more skewed (right-skewed). Mean is fine for Normal;
+# median is better for Exponential since its mean is pulled by the tail.
 
 # Descriptive Stats Q5
 data1 = [10, 12, 12, 16, 18]
