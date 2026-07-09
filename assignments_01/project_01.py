@@ -11,12 +11,12 @@ from prefect import flow, task, get_run_logger
 
 DATA_DIR = (
     Path(__file__).resolve().parent.parent.parent
-    / "python-200"
+    / "python200-homework"
     / "assignments"
     / "resources"
     / "happiness_project"
 )
-OUTPUT_DIR = Path(__file__).resolve().parent.parent / "outputs"
+OUTPUT_DIR = Path(__file__).resolve().parent / "outputs"
 YEARS = list(range(2015, 2025))
 
 

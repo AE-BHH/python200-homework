@@ -23,7 +23,7 @@ print(f"dataframe info: {df.info()}")
 
 # Pandas Q2
 
-filtered_df = df[df["grade"] > 80]
+filtered_df = df[(df["passed"] == True) & (df["grade"] > 80)]
 print(filtered_df)
 
 # Pandas Q3
@@ -87,15 +87,15 @@ y = [0, 1, 4, 9, 16, 25]
 
 plt.plot(x, y)
 plt.title("Squares")
-plt.xlabel(x)
-plt.ylabel(y)
+plt.xlabel("x")
+plt.ylabel("y")
 plt.show()
 
 # Matplotlib Q2
 subjects = ["Math", "Science", "English", "History"]
 scores = [88, 92, 75, 83]
 plt.bar(subjects, scores)
-plt.title("Student Scores")
+plt.title("Subject Scores")
 plt.xlabel("Subjects")
 plt.ylabel("Scores")
 plt.show()
@@ -133,7 +133,6 @@ axes[1].bar(subjects, scores)
 axes[1].set_title("Student Scores")
 axes[1].set_xlabel("Subjects")
 axes[1].set_ylabel("Scores")
-
 plt.tight_layout()
 plt.show()
 
@@ -182,14 +181,13 @@ plt.show()
 # Descriptive Stats Q5
 data1 = [10, 12, 12, 16, 18]
 data2 = [10, 12, 12, 16, 150]
-
 mean1 = np.mean(data1)
 median1 = np.median(data1)
-mode1 = stats.mode(data1)
+mode1 = stats.mode(data1, keepdims=False).mode
 
 mean2 = np.mean(data2)
 median2 = np.median(data2)
-mode2 = stats.mode(data2)
+mode2 = stats.mode(data2, keepdims=False).mode
 
 print(f"Data 1: Mean: {mean1}, Median: {median1}, Mode: {mode1}")
 print(f"Data 2: Mean: {mean2}, Median: {median2}, Mode: {mode2}")
@@ -205,8 +203,8 @@ group_b = [80, 85, 78, 83, 82, 86, 79, 84]
 
 t_test, p_value = stats.ttest_ind(group_a, group_b)
 print("Answer for Hypothesis Testing Q1:")
-print(f"t-test statistic:", {t_test})
-print(f"p-value statistic:", {p_value})
+print(f"t-test statistic: {t_test}")
+print(f"p-value: {p_value}")
 
 # Hypothesis Testing Q2
 if p_value < 0.05:
@@ -232,10 +230,10 @@ print(f"p-value statistic: {p_value:.5f}")
 
 
 # Hypothesis Testing Q5
-stats.ttest_ind(group_a, group_b, alternative="less")
+t_test, p_value = stats.ttest_ind(group_a, group_b, alternative="less")
 print("Answer for Hypothesis Testing Q5:")
 print(f"t-test statistic: {t_test:.3f}")
-print(f"p-value statistic: {p_value:.5f}")
+print(f"p-value: {p_value:.5f}")
 
 # Hypothesis Testing Q6
 print("Answer for Hypothesis Testing Q6:")
