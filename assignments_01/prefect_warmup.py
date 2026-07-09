@@ -15,7 +15,7 @@ def clean_data(series):
 
 
 @task
-def summerize_data(series):
+def summarize_data(series):
     return {
         "mean": series.mean(),
         "median": series.median(),
@@ -28,7 +28,7 @@ def summerize_data(series):
 def pipeline_flow(arr):
     series = create_series(arr)
     cleaned_series = clean_data(series)
-    summary = summerize_data(cleaned_series)
+    summary = summarize_data(cleaned_series)
     return summary
 
 
